@@ -4,6 +4,7 @@
 //
 
 import UIKit
+import ExpoBrownfieldKit
 import PushKit
 import Intents
 import UserNotifications
@@ -37,6 +38,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, PKPushRegistryDelegate {
     private var fileDescriptorTimer: Timer?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        // Brownfield: initialize React Native and add the floating "Expo" launch button.
+        ExpoIntegration.bootstrap()
         #if DEBUG
         AFNetworkActivityIndicatorManager.shared().isEnabled = true
         #endif
