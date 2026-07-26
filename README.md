@@ -1,3 +1,18 @@
+# Nextcloud Talk iOS + React Native
+
+Experimental fork of [Nextcloud Talk](https://github.com/nextcloud/talk-ios) testing brownfield
+support for existing iOS codebases. Commits serve as reference for integrating
+React Native without refactoring the project structure.
+
+Uses Expo's brownfield isolated approach.
+
+## Integration steps
+1. **Create Expo app**: the React Native screen is prebuilt once in the shared [expo-brownfield-shared-ios](https://github.com/briones-agent/expo-brownfield-shared-ios) Swift Package (product `ExpoBrownfieldPackage`, module `ExpoBrownfieldKit`).
+2. **Install expo-brownfield**: add the remote Swift Package to the `NextcloudTalk` target (coexists with the existing CocoaPods dependencies; run `pod install` first).
+3. **Integrate**: `NextcloudTalk/ExpoIntegration.swift` adds a floating "Expo" button on an overlay `UIWindow` that presents `ReactNativeViewController(moduleName: "main")`; `AppDelegate` calls `ExpoIntegration.bootstrap()` at launch. iOS deployment target bumped to 16.4.
+
+<details><summary>Nextcloud Talk</summary>
+
 <!--
   - SPDX-FileCopyrightText: 2017 Nextcloud GmbH and Nextcloud contributors
   - SPDX-License-Identifier: GPL-3.0-or-later
@@ -90,3 +105,6 @@ We are also available on [our public Talk team conversation](https://cloud.nextc
 
 **License:** [GPLv3](https://github.com/nextcloud/talk-ios/blob/main/LICENSE) with [Apple app store exception](https://github.com/nextcloud/talk-ios/blob/main/COPYING.iOS).
 
+
+
+</details>
